@@ -48,3 +48,21 @@ git pull <nome>(por padrão é origin) <nome-da-branch> geralmente a default(mai
 git fetch
 - atualiza o novo historico local de acordo com o historico salvo la no repositório, exemplo novas branchs adicionadas são adicionadas no local
 - sincronização do local com o remoto
+
+git rebase <branch>
+- aplica os commits da branch atual no topo da branch informada
+
+git rebase -i <commit/branch>
+- abre o rebase iterativo para editar, juntar ou reordenar commits
+
+git stash
+- guarda as alterações locais temporariamente sem precisar fazer commit
+
+git stash apply
+- recupera as alterações guardadas no stash e mantêm a cópia salva
+
+git cherry-pick <hash-do-commit>
+- aplica um commit especifico de outra branch na sua branch atual
+
+git commit --amend
+- altera o ultimo commit realizado, permitindo mudar a mensagem ou adicionar arquivos
