@@ -33,18 +33,18 @@ git branch
 git checkout <nome-branch>
 - muda pra essa branch
 
-git branch -b <nome-da-branch>
+git checkout -b <nome-da-branch>
 - criar uma nova branch a partir da branch atual que estamos
 
-git remote add <nome> <url>
+git remote add <nome>(por padrão é origin) <url>
 - add um novo repositorio remoto
 
-git push <nome> <nome-da-branch>
+git push <nome>(por padrão é origin) <nome-da-branch>
 - manda nossas alterações locais para o repositório remoto, pra cada branch
 
-git pull <nome> <nome-da-branch>
+git pull <nome>(por padrão é origin) <nome-da-branch> geralmente a default(main/master)
 - pega as alterações do repositório remoto, e joga pra nossa maquina
 
 git fetch
-- atualiza o novo historico local de acordo com o historico salvo la no repositório
+- atualiza o novo historico local de acordo com o historico salvo la no repositório, exemplo novas branchs adicionadas são adicionadas no local
 - sincronização do local com o remoto
