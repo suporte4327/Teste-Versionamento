@@ -1,0 +1,148 @@
+/* Aplica a todos os elementos da página (o asterisco significa "todos") */
+* {
+    /* Remove as margens e espaçamentos internos padrão que o navegador coloca */
+    margin: 0;
+    padding: 0;
+
+    /* Faz com que padding e border sejam incluídos no tamanho total do elemento */
+    box-sizing: border-box;
+}
+
+/* Estilo aplicado ao corpo (body) inteiro da página */
+body {
+    /* Define a fonte usada no texto do site */
+    font-family: Arial, Helvetica, sans-serif;
+
+    /* Cor do texto */
+    color: #333333;
+
+    /* Cor de fundo inicial da página */
+    background-color: #ffffff;
+
+    /* Transição suave quando a cor de fundo mudar (usado no botão de trocar cor) */
+    transition: background-color 0.4s ease;
+
+    /* Espaçamento das bordas da página até o conteúdo */
+    padding: 20px;
+}
+
+/* Estilo do cabeçalho (header) */
+header {
+    /* Centraliza o texto dentro do cabeçalho */
+    text-align: center;
+
+    /* Espaço abaixo do cabeçalho, separando do conteúdo */
+    margin-bottom: 30px;
+}
+
+/* Estilo do título principal (h1) */
+header h1 {
+    /* Cor diferenciada para o título */
+    color: #2c6e91;
+
+    /* Espaço abaixo do título */
+    margin-bottom: 10px;
+}
+
+/* Estilo do menu de navegação (nav) */
+nav a {
+    /* Cor dos links do menu */
+    color: #2c6e91;
+
+    /* Remove o sublinhado padrão dos links */
+    text-decoration: none;
+
+    /* Espaço entre um link e outro */
+    margin: 0 10px;
+
+    /* Deixa o texto do link em negrito */
+    font-weight: bold;
+}
+
+/* Efeito ao passar o mouse por cima dos links do menu */
+nav a:hover {
+    /* Sublinha o link quando o mouse passa por cima */
+    text-decoration: underline;
+}
+
+/* Estilo de cada seção do conteúdo principal */
+section {
+    /* Espaço abaixo de cada seção */
+    margin-bottom: 25px;
+}
+
+/* Estilo dos subtítulos (h2) dentro das seções */
+section h2 {
+    /* Cor um pouco diferente para destacar */
+    color: #444444;
+
+    /* Espaço abaixo do subtítulo */
+    margin-bottom: 10px;
+}
+
+/* Estilo geral aplicado a todos os botões da página */
+button {
+    /* Espaçamento interno do botão (em cima/baixo e nos lados) */
+    padding: 8px 14px;
+
+    /* Espaço entre um botão e outro */
+    margin: 5px;
+
+    /* Remove a borda padrão do navegador */
+    border: none;
+
+    /* Deixa os cantos do botão arredondados */
+    border-radius: 6px;
+
+    /* Cor de fundo do botão */
+    background-color: #2c6e91;
+
+    /* Cor do texto do botão */
+    color: #ffffff;
+
+    /* Tamanho da fonte do texto do botão */
+    font-size: 14px;
+
+    /* Muda o cursor do mouse para "mãozinha" ao passar sobre o botão */
+    cursor: pointer;
+}
+
+/* Efeito ao passar o mouse por cima de qualquer botão */
+button:hover {
+    /* Escurece um pouco a cor de fundo para dar feedback visual */
+    background-color: #1f4f68;
+}
+
+/* Estilo específico do texto que mostra o valor do contador */
+#valorContador {
+    /* Deixa o número maior e em negrito para destacar */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Estilo da linha horizontal (hr) usada para separar seções */
+hr {
+    /* Remove a borda padrão */
+    border: none;
+
+    /* Cria uma linha fina cinza no lugar da borda padrão */
+    border-top: 1px solid #cccccc;
+
+    /* Espaço acima e abaixo da linha */
+    margin: 20px 0;
+}
+
+/* Estilo do rodapé (footer) */
+footer {
+    /* Centraliza o texto do rodapé */
+    text-align: center;
+
+    /* Espaço acima do rodapé */
+    margin-top: 40px;
+
+    /* Tamanho de fonte menor para o rodapé */
+    font-size: 12px;
+
+    /* Cor de texto mais clara, para parecer "discreto" */
+    color: #888888;
+}

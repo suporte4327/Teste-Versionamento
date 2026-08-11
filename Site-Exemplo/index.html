@@ -1,14 +1,81 @@
+<!-- Define que este documento é um HTML5 e que o idioma principal é português do Brasil -->
 <html lang="pt-br">
 <head>
+    <!-- Define a codificação de caracteres como UTF-8, permitindo acentos e caracteres especiais -->
     <meta charset="UTF-8">
+
+    <!-- Configura a página para se adaptar bem a telas de celular (responsividade) -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Título que aparece na aba do navegador -->
     <title>Meu primeiro site em repositório</title>
+
+    <!-- Importa o arquivo de estilos (CSS) que está na mesma pasta -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Olá!</h1>
 
-    <hr>
-    <p>Teste paragráfo.</p>
+    <!-- Cabeçalho do site, com o menu de navegação -->
+    <header>
+        <h1>Meu Site de Teste</h1>
+        <nav>
+            <!-- Links que levam para as seções da própria página (âncoras) -->
+            <a href="#sobre">Sobre</a>
+            <a href="#contador">Contador</a>
+            <a href="#cores">Cores</a>
+        </nav>
+    </header>
 
+    <!-- Conteúdo principal da página -->
+    <main>
+
+        <!-- Seção "Sobre" -->
+        <section id="sobre">
+            <h2>Sobre este site</h2>
+            <p>Este é um site simples feito para praticar HTML, CSS e JavaScript.</p>
+        </section>
+
+        <hr>
+
+        <!-- Seção com um contador interativo -->
+        <section id="contador">
+            <h2>Contador</h2>
+            <!-- Texto que mostra o valor do contador, atualizado pelo JavaScript -->
+            <p>Valor atual: <span id="valorContador">0</span></p>
+
+            <!-- Botão que diminui o contador -->
+            <button id="btnDiminuir">-</button>
+
+            <!-- Botão que aumenta o contador -->
+            <button id="btnAumentar">+</button>
+
+            <!-- Botão que zera o contador -->
+            <button id="btnZerar">Zerar</button>
+        </section>
+
+        <hr>
+
+        <!-- Seção que troca a cor de fundo da página -->
+        <section id="cores">
+            <h2>Trocar cor de fundo</h2>
+            <p>Clique nos botões abaixo para mudar a cor de fundo da página.</p>
+
+            <!-- Cada botão tem um atributo "data-cor" com a cor que ele representa -->
+            <button class="botao-cor" data-cor="#ffe4e1">Rosa</button>
+            <button class="botao-cor" data-cor="#e0ffff">Azul claro</button>
+            <button class="botao-cor" data-cor="#e6ffe6">Verde claro</button>
+            <button class="botao-cor" data-cor="#ffffff">Branco (padrão)</button>
+        </section>
+
+    </main>
+
+    <!-- Rodapé do site -->
+    <footer>
+        <p>Feito com HTML, CSS e JavaScript &mdash; site de exemplo.</p>
+    </footer>
+
+    <!-- Importa o arquivo JavaScript. Colocado no final do body para garantir -->
+    <!-- que o HTML já foi carregado antes do script tentar manipular os elementos -->
+    <script src="script.js"></script>
 </body>
 </html>
