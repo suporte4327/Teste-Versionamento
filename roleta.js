@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Paleta de cores usada nas fatias da roleta, repetida caso existam mais opções que cores
     const paletaCores = [
-        "#2c6e91", "#e07a5f", "#81b29a", "#f2cc8f", "#3d405b",
-        "#e63946", "#457b9d", "#f4a261", "#6a994e", "#9b5de5"
+        "#ef476f", "#ff8500", "#ffd60a", "#06d6a0", "#118ab2",
+        "#7209b7", "#f72585", "#3a86ff", "#2ec4b6", "#e63946"
     ];
 
     // Lista de opções cadastradas pelo usuário
@@ -71,14 +71,19 @@ document.addEventListener("DOMContentLoaded", function () {
             contexto.fillStyle = paletaCores[indice % paletaCores.length];
             contexto.fill();
 
-            // Escreve o nome da opção alinhado com a fatia
+            // Escreve o nome da opção centralizado na fatia, a meio caminho do raio
+            // (evita ficar espremido contra a borda externa do círculo)
             contexto.save();
             contexto.translate(raio, raio);
             contexto.rotate(anguloInicial + anguloFatia / 2);
-            contexto.textAlign = "right";
+            contexto.textAlign = "center";
+            contexto.textBaseline = "middle";
+            contexto.font = "600 16px 'Segoe UI', sans-serif";
             contexto.fillStyle = "#ffffff";
-            contexto.font = "bold 15px Segoe UI";
-            contexto.fillText(recortarTexto(opcao), raio - 18, 5);
+            contexto.lineWidth = 3;
+            contexto.strokeStyle = "rgba(0, 0, 0, 0.35)";
+            contexto.strokeText(recortarTexto(opcao), raio * 0.6, 0);
+            contexto.fillText(recortarTexto(opcao), raio * 0.6, 0);
             contexto.restore();
         });
     }
