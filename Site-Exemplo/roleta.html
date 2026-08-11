@@ -1,0 +1,114 @@
+<!-- Página que permite criar uma roleta personalizada e girá-la para sortear um resultado -->
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roleta Criativa</title>
+
+    <!-- Bootstrap (CSS) via CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Ícones do Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Estilos gerais do site (reaproveitados aqui) -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Estilos específicos da roleta (canvas, ponteiro, lista de opções) -->
+    <link rel="stylesheet" href="roleta.css">
+</head>
+<body>
+
+    <!-- Barra de navegação com link de volta para a página inicial -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="index.html"><i class="bi bi-arrow-left"></i> Voltar ao site</a>
+            <span class="navbar-text text-white fw-semibold d-none d-sm-inline">Roleta Criativa</span>
+        </div>
+    </nav>
+
+    <!-- Cabeçalho de destaque -->
+    <header class="hero text-center text-white">
+        <div class="container py-4">
+            <h1 class="display-6 fw-bold"><i class="bi bi-circle-half"></i> Crie sua Roleta</h1>
+            <p class="lead mb-0">Adicione as opções que quiser, gire a roleta e descubra o resultado sorteado.</p>
+        </div>
+    </header>
+
+    <main class="container py-5">
+        <div class="row g-4">
+
+            <!-- Coluna com o formulário e a lista de opções -->
+            <div class="col-lg-5">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body p-4 d-flex flex-column">
+                        <h2 class="h5 mb-3"><i class="bi bi-list-ul text-primary"></i> Opções da roleta</h2>
+
+                        <!-- Formulário para adicionar uma nova opção -->
+                        <form id="formOpcao" class="d-flex gap-2 mb-3">
+                            <input type="text" id="inputOpcao" class="form-control" placeholder="Digite uma opção..." maxlength="30" autocomplete="off" required>
+                            <button type="submit" class="btn btn-primary" title="Adicionar opção">
+                                <i class="bi bi-plus-lg"></i>
+                            </button>
+                        </form>
+
+                        <!-- Lista das opções adicionadas, preenchida via JavaScript -->
+                        <ul id="listaOpcoes" class="list-group mb-2 flex-grow-1"></ul>
+
+                        <!-- Mensagem exibida quando não há opções cadastradas -->
+                        <p id="mensagemVazia" class="text-muted small text-center py-3">Nenhuma opção adicionada ainda. Adicione pelo menos duas para girar a roleta.</p>
+
+                        <div class="d-flex gap-2 mt-2">
+                            <button id="btnGirar" class="btn btn-success flex-grow-1" disabled>
+                                <i class="bi bi-play-fill"></i> Girar roleta
+                            </button>
+                            <button id="btnLimpar" class="btn btn-outline-danger">
+                                <i class="bi bi-trash"></i> Limpar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Coluna com a roleta desenhada em canvas -->
+            <div class="col-lg-7">
+                <div class="card shadow-sm border-0 h-100">
+                    <div class="card-body p-4 d-flex flex-column align-items-center justify-content-center">
+                        <div class="roleta-wrapper">
+                            <div class="ponteiro"></div>
+                            <canvas id="canvasRoleta" width="420" height="420"></canvas>
+                            <div class="roleta-centro"><i class="bi bi-stars"></i></div>
+                        </div>
+                        <p id="mensagemResultado" class="mt-4 fs-5 fw-semibold text-primary text-center"></p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center py-4">
+        <p class="mb-0 text-muted">Feito com HTML, CSS, JavaScript e Bootstrap &mdash; site de exemplo.</p>
+    </footer>
+
+    <!-- Modal exibido com o resultado sorteado -->
+    <div class="modal fade" id="modalResultado" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                <div class="modal-body p-5">
+                    <i class="bi bi-trophy-fill text-warning display-3 mb-3"></i>
+                    <h3 class="mb-2">Resultado sorteado:</h3>
+                    <p id="textoVencedor" class="display-6 fw-bold text-primary"></p>
+                    <button type="button" class="btn btn-primary mt-3 px-4" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap (JS), necessário para o modal de resultado -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Lógica da roleta (desenho no canvas, lista de opções e animação de giro) -->
+    <script src="roleta.js"></script>
+</body>
+</html>

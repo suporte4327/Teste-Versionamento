@@ -1,0 +1,75 @@
+/* Área que agrupa a roleta, o ponteiro e o círculo central */
+.roleta-wrapper {
+    position: relative;
+    width: 420px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+/* Canvas onde a roleta é desenhada */
+#canvasRoleta {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    background-color: #ffffff;
+    border: 6px solid #ffffff;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+
+    /* A rotação da roleta é feita mudando esta propriedade via JavaScript; */
+    /* a transição faz o giro parecer suave, com desaceleração no final. */
+    transition: transform 4.2s cubic-bezier(0.15, 0.65, 0.15, 1);
+}
+
+/* Ponteiro fixo apontando para o topo da roleta (não gira) */
+.ponteiro {
+    position: absolute;
+    top: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 16px solid transparent;
+    border-right: 16px solid transparent;
+    border-top: 28px solid var(--cor-primaria-escura, #1f4f68);
+    filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
+    z-index: 5;
+}
+
+/* Círculo decorativo no centro da roleta */
+.roleta-centro {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.6rem;
+    color: var(--cor-primaria, #2c6e91);
+    z-index: 4;
+}
+
+/* Cada item da lista de opções cadastradas */
+#listaOpcoes .list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+    margin-bottom: 6px;
+}
+
+/* Bolinha colorida que indica a cor da opção na roleta */
+.cor-indicador {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}

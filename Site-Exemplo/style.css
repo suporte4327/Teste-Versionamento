@@ -1,3 +1,10 @@
+/* Cores principais do site, reaproveitadas em vários lugares */
+:root {
+    --cor-primaria: #2c6e91;
+    --cor-primaria-escura: #1f4f68;
+    --cor-primaria-clara: #6db6d9;
+}
+
 /* Aplica a todos os elementos da página (o asterisco significa "todos") */
 * {
     /* Remove as margens e espaçamentos internos padrão que o navegador coloca */
@@ -11,138 +18,90 @@
 /* Estilo aplicado ao corpo (body) inteiro da página */
 body {
     /* Define a fonte usada no texto do site */
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
 
     /* Cor do texto */
     color: #333333;
 
-    /* Cor de fundo inicial da página */
-    background-color: #ffffff;
+    /* Cor de fundo inicial da página (levemente acinzentada para destacar os cartões brancos) */
+    background-color: #f4f7fb;
 
     /* Transição suave quando a cor de fundo mudar (usado no botão de trocar cor) */
     transition: background-color 0.4s ease;
-
-    /* Espaçamento das bordas da página até o conteúdo */
-    padding: 20px;
 }
 
-/* Estilo do cabeçalho (header) */
-header {
-    /* Centraliza o texto dentro do cabeçalho */
-    text-align: center;
-
-    /* Espaço abaixo do cabeçalho, separando do conteúdo */
-    margin-bottom: 30px;
+/* Barra de navegação no topo, com um degradê usando a cor principal do site */
+.navbar {
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-escura));
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Estilo do título principal (h1) */
-header h1 {
-    /* Cor diferenciada para o título */
-    color: #2c6e91;
-
-    /* Espaço abaixo do título */
-    margin-bottom: 10px;
+.navbar-brand,
+.navbar .nav-link {
+    color: #ffffff !important;
 }
 
-/* Estilo do menu de navegação (nav) */
-nav a {
-    /* Cor dos links do menu */
-    color: #2c6e91;
-
-    /* Remove o sublinhado padrão dos links */
-    text-decoration: none;
-
-    /* Espaço entre um link e outro */
-    margin: 0 10px;
-
-    /* Deixa o texto do link em negrito */
-    font-weight: bold;
+.navbar .nav-link:hover {
+    color: #cfe8f7 !important;
 }
 
-/* Efeito ao passar o mouse por cima dos links do menu */
-nav a:hover {
-    /* Sublinha o link quando o mouse passa por cima */
-    text-decoration: underline;
+/* Cabeçalho de destaque (hero) com degradê e texto centralizado */
+.hero {
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-clara));
 }
 
-/* Estilo de cada seção do conteúdo principal */
-section {
-    /* Espaço abaixo de cada seção */
-    margin-bottom: 25px;
+/* Cartões usados para organizar cada seção do conteúdo */
+.card {
+    border-radius: 14px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Estilo dos subtítulos (h2) dentro das seções */
-section h2 {
-    /* Cor um pouco diferente para destacar */
-    color: #444444;
-
-    /* Espaço abaixo do subtítulo */
-    margin-bottom: 10px;
+.card:hover {
+    transform: translateY(-4px);
 }
 
-/* Estilo geral aplicado a todos os botões da página */
-button {
-    /* Espaçamento interno do botão (em cima/baixo e nos lados) */
-    padding: 8px 14px;
-
-    /* Espaço entre um botão e outro */
-    margin: 5px;
-
-    /* Remove a borda padrão do navegador */
-    border: none;
-
-    /* Deixa os cantos do botão arredondados */
-    border-radius: 6px;
-
-    /* Cor de fundo do botão */
-    background-color: #2c6e91;
-
-    /* Cor do texto do botão */
-    color: #ffffff;
-
-    /* Tamanho da fonte do texto do botão */
-    font-size: 14px;
-
-    /* Muda o cursor do mouse para "mãozinha" ao passar sobre o botão */
-    cursor: pointer;
+/* Cartão de destaque que convida o usuário a acessar a página da roleta */
+.destaque-roleta {
+    background: linear-gradient(135deg, var(--cor-primaria-escura), var(--cor-primaria));
 }
 
-/* Efeito ao passar o mouse por cima de qualquer botão */
-button:hover {
-    /* Escurece um pouco a cor de fundo para dar feedback visual */
-    background-color: #1f4f68;
+/* Ajusta as cores dos botões padrão do Bootstrap para usar a cor principal do site */
+.btn-primary {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
 }
 
-/* Estilo específico do texto que mostra o valor do contador */
-#valorContador {
-    /* Deixa o número maior e em negrito para destacar */
-    font-size: 20px;
-    font-weight: bold;
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--cor-primaria-escura);
+    border-color: var(--cor-primaria-escura);
 }
 
-/* Estilo da linha horizontal (hr) usada para separar seções */
-hr {
-    /* Remove a borda padrão */
-    border: none;
-
-    /* Cria uma linha fina cinza no lugar da borda padrão */
-    border-top: 1px solid #cccccc;
-
-    /* Espaço acima e abaixo da linha */
-    margin: 20px 0;
+.btn-outline-primary {
+    color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
 }
 
-/* Estilo do rodapé (footer) */
+.btn-outline-primary:hover {
+    background-color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+/* Botões que trocam a cor de fundo da página */
+.botao-cor {
+    background-color: #ffffff;
+    border: 2px solid #dde3ea;
+    color: #333333;
+    font-weight: 600;
+}
+
+.botao-cor:hover {
+    border-color: var(--cor-primaria);
+    color: var(--cor-primaria);
+    transform: translateY(-2px);
+}
+
+/* Rodapé do site */
 footer {
-    /* Centraliza o texto do rodapé */
-    text-align: center;
-
-    /* Espaço acima do rodapé */
-    margin-top: 40px;
-
-    /* Tamanho de fonte menor para o rodapé */
-    font-size: 12px;
-
-    /* Cor de texto mais clara, para parecer "discreto" */
     color: #888888;
 }
