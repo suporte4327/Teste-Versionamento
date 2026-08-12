@@ -4,6 +4,12 @@
     width: 420px;
     max-width: 100%;
     margin: 0 auto;
+    border-radius: 50%;
+
+    /* Anel em degradê verde ao redor da roleta, atrás do canvas branco */
+    background: linear-gradient(135deg, var(--cor-primaria-clara, #81c784), var(--cor-primaria, #2e7d32), var(--cor-primaria-escura, #1b5e20));
+    padding: 8px;
+    box-shadow: 0 14px 30px rgba(27, 94, 32, 0.3);
 }
 
 /* Canvas onde a roleta é desenhada */
@@ -14,7 +20,6 @@
     border-radius: 50%;
     background-color: #ffffff;
     border: 6px solid #ffffff;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
 
     /* A rotação da roleta é feita mudando esta propriedade via JavaScript; */
     /* a transição faz o giro parecer suave, com desaceleração no final. */
@@ -24,14 +29,14 @@
 /* Ponteiro fixo apontando para o topo da roleta (não gira) */
 .ponteiro {
     position: absolute;
-    top: -8px;
+    top: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 0;
     height: 0;
     border-left: 16px solid transparent;
     border-right: 16px solid transparent;
-    border-top: 28px solid var(--cor-primaria-escura, #1f4f68);
+    border-top: 28px solid var(--cor-primaria-escura, #1b5e20);
     filter: drop-shadow(0 2px 3px rgba(0, 0, 0, 0.35));
     z-index: 5;
 }
@@ -42,16 +47,17 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 64px;
-    height: 64px;
+    width: 72px;
+    height: 72px;
     border-radius: 50%;
     background-color: #ffffff;
+    border: 3px solid var(--cor-primaria-clara, #81c784);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.6rem;
-    color: var(--cor-primaria, #2c6e91);
+    font-size: 1.8rem;
+    color: var(--cor-primaria, #2e7d32);
     z-index: 4;
 }
 

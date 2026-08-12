@@ -1,8 +1,15 @@
 /* Cores principais do site, reaproveitadas em vários lugares */
 :root {
-    --cor-primaria: #2c6e91;
-    --cor-primaria-escura: #1f4f68;
-    --cor-primaria-clara: #6db6d9;
+    --cor-primaria: #2e7d32;
+    --cor-primaria-escura: #1b5e20;
+    --cor-primaria-clara: #81c784;
+    --cor-primaria-vibrante: #43a047;
+
+    /* Degradê principal, usado na navbar, no cabeçalho e em botões de destaque */
+    --gradiente-principal: linear-gradient(135deg, var(--cor-primaria-escura) 0%, var(--cor-primaria) 55%, var(--cor-primaria-vibrante) 100%);
+
+    /* Sombra esverdeada usada para dar profundidade a cartões e botões */
+    --sombra-verde: rgba(46, 125, 50, 0.25);
 }
 
 /* Aplica a todos os elementos da página (o asterisco significa "todos") */
@@ -23,8 +30,9 @@ body {
     /* Cor do texto */
     color: #333333;
 
-    /* Cor de fundo inicial da página (levemente acinzentada para destacar os cartões brancos) */
-    background-color: #f4f7fb;
+    /* Fundo com um leve degradê esverdeado, para dar mais profundidade que uma cor sólida */
+    background: radial-gradient(circle at 12% 0%, #e8f8ee 0%, #f4f7fb 45%, #edf6f0 100%);
+    background-attachment: fixed;
 
     /* Transição suave quando a cor de fundo mudar (usado no botão de trocar cor) */
     transition: background-color 0.4s ease;
@@ -32,8 +40,8 @@ body {
 
 /* Barra de navegação no topo, com um degradê usando a cor principal do site */
 .navbar {
-    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-escura));
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    background: var(--gradiente-principal);
+    box-shadow: 0 2px 14px rgba(0, 0, 0, 0.18);
 }
 
 .navbar-brand,
@@ -41,50 +49,126 @@ body {
     color: #ffffff !important;
 }
 
-.navbar .nav-link:hover {
-    color: #cfe8f7 !important;
+/* Sublinhado em degradê que aparece suavemente ao passar o mouse sobre os links */
+.navbar .nav-link {
+    position: relative;
 }
 
-/* Cabeçalho de destaque (hero) com degradê e texto centralizado */
+.navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 2px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--cor-primaria-clara), #ffffff);
+    transform: scaleX(0);
+    transition: transform 0.25s ease;
+}
+
+.navbar .nav-link:hover {
+    color: #c8e6c9 !important;
+}
+
+.navbar .nav-link:hover::after {
+    transform: scaleX(1);
+}
+
+/* Cabeçalho de destaque (hero) com degradê e um brilho suave sobreposto */
 .hero {
-    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-clara));
+    position: relative;
+    overflow: hidden;
+    background: var(--gradiente-principal);
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.25), transparent 60%);
+    pointer-events: none;
+}
+
+.hero .container {
+    position: relative;
 }
 
 /* Cartões usados para organizar cada seção do conteúdo */
 .card {
+    position: relative;
+    overflow: hidden;
     border-radius: 14px;
+    /* Branco levemente tingido de verde, para combinar com o fundo em degradê */
+    background-color: #f7fbf8;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Faixa em degradê no topo de cada cartão, um toque moderno de identidade visual */
+.card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--cor-primaria-clara), var(--cor-primaria), var(--cor-primaria-vibrante));
 }
 
 .card:hover {
     transform: translateY(-4px);
+    box-shadow: 0 16px 28px var(--sombra-verde);
 }
 
 /* Cartão de destaque que convida o usuário a acessar a página da roleta */
 .destaque-roleta {
-    background: linear-gradient(135deg, var(--cor-primaria-escura), var(--cor-primaria));
+    background: linear-gradient(135deg, var(--cor-primaria-escura) 0%, var(--cor-primaria) 50%, var(--cor-primaria-vibrante) 100%);
 }
 
-/* Ajusta as cores dos botões padrão do Bootstrap para usar a cor principal do site */
+/* Ajusta as cores dos botões padrão do Bootstrap para usar degradês na paleta verde */
 .btn-primary {
-    background-color: var(--cor-primaria);
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-vibrante));
     border-color: var(--cor-primaria);
+    box-shadow: 0 4px 12px var(--sombra-verde);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
 }
 
 .btn-primary:hover,
 .btn-primary:focus {
-    background-color: var(--cor-primaria-escura);
+    background: linear-gradient(135deg, var(--cor-primaria-escura), var(--cor-primaria));
     border-color: var(--cor-primaria-escura);
+    box-shadow: 0 6px 16px var(--sombra-verde);
+    transform: translateY(-1px);
 }
 
 .btn-outline-primary {
     color: var(--cor-primaria);
     border-color: var(--cor-primaria);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
 }
 
 .btn-outline-primary:hover {
-    background-color: var(--cor-primaria);
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-vibrante));
+    border-color: transparent;
+    color: #ffffff;
+    box-shadow: 0 4px 12px var(--sombra-verde);
+    transform: translateY(-1px);
+}
+
+/* Botão de sucesso (usado para "Girar roleta"), também na paleta verde em degradê */
+.btn-success {
+    background: linear-gradient(135deg, var(--cor-primaria-vibrante), var(--cor-primaria-clara));
+    border-color: var(--cor-primaria-vibrante);
+    box-shadow: 0 4px 12px var(--sombra-verde);
+    transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+    background: linear-gradient(135deg, var(--cor-primaria), var(--cor-primaria-vibrante));
     border-color: var(--cor-primaria);
+    box-shadow: 0 6px 16px var(--sombra-verde);
+    transform: translateY(-1px);
 }
 
 /* Botões que trocam a cor de fundo da página */
@@ -93,15 +177,18 @@ body {
     border: 2px solid #dde3ea;
     color: #333333;
     font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease, color 0.15s ease;
 }
 
 .botao-cor:hover {
     border-color: var(--cor-primaria);
     color: var(--cor-primaria);
+    box-shadow: 0 6px 14px var(--sombra-verde);
     transform: translateY(-2px);
 }
 
 /* Rodapé do site */
 footer {
     color: #888888;
+    border-top: 1px solid rgba(46, 125, 50, 0.15);
 }

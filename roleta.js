@@ -33,12 +33,33 @@ document.addEventListener("DOMContentLoaded", function () {
     // Guarda qual opção foi sorteada no giro atual, para ser lida quando a animação terminar
     let indiceVencedorAtual = -1;
 
+    // Tamanho "lógico" do canvas (em pixels de CSS); o tamanho real do bitmap
+    // é maior em telas de alta densidade (retina), evitando imagem borrada
+    let tamanhoCanvas = canvas.width;
+
+
+    // ===================== RESOLUÇÃO DO CANVAS =====================
+
+    // Ajusta a resolução interna do canvas à densidade de pixels da tela,
+    // desenhando em alta definição mesmo quando o CSS exibe o canvas ampliado
+    function ajustarResolucaoCanvas() {
+        const dpr = window.devicePixelRatio || 1;
+        tamanhoCanvas = canvas.clientWidth || canvas.width;
+
+        canvas.width = tamanhoCanvas * dpr;
+        canvas.height = tamanhoCanvas * dpr;
+
+        // Faz com que todos os comandos de desenho continuem usando
+        // as coordenadas "lógicas" (em pixels de CSS), independente do dpr
+        contexto.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
 
     // ===================== DESENHO DA ROLETA =====================
 
     // Redesenha a roleta no canvas de acordo com as opções cadastradas
     function desenharRoleta() {
-        const tamanho = canvas.width;
+        const tamanho = tamanhoCanvas;
         const raio = tamanho / 2;
 
         contexto.clearRect(0, 0, tamanho, tamanho);
@@ -51,13 +72,17 @@ document.addEventListener("DOMContentLoaded", function () {
             contexto.fill();
 
             contexto.fillStyle = "#adb5bd";
-            contexto.font = "bold 16px Segoe UI";
+            contexto.font = "600 16px 'Segoe UI', sans-serif";
             contexto.textAlign = "center";
             contexto.fillText("Adicione opções", raio, raio);
             return;
         }
 
         const anguloFatia = (Math.PI * 2) / opcoes.length;
+
+        // Tamanho da fonte proporcional ao raio, para ficar bem legível
+        // em qualquer quantidade de opções (com um teto para não exagerar)
+        const tamanhoFonte = Math.round(Math.min(raio * 0.16, 30));
 
         opcoes.forEach(function (opcao, indice) {
             const anguloInicial = indice * anguloFatia;
@@ -71,26 +96,38 @@ document.addEventListener("DOMContentLoaded", function () {
             contexto.fillStyle = paletaCores[indice % paletaCores.length];
             contexto.fill();
 
-            // Escreve o nome da opção centralizado na fatia, a meio caminho do raio
-            // (evita ficar espremido contra a borda externa do círculo)
+            // Linha divisória branca entre fatias, para um acabamento mais nítido
+            contexto.lineWidth = 3;
+            contexto.strokeStyle = "rgba(255, 255, 255, 0.9)";
+            contexto.stroke();
+
+            // Escreve o nome da opção centralizado na fatia, próximo à borda externa
+            // (deixa o texto maior e mais fácil de ler que centralizado no meio do raio)
             contexto.save();
             contexto.translate(raio, raio);
             contexto.rotate(anguloInicial + anguloFatia / 2);
             contexto.textAlign = "center";
             contexto.textBaseline = "middle";
-            contexto.font = "600 16px 'Segoe UI', sans-serif";
+            contexto.font = "700 " + tamanhoFonte + "px 'Segoe UI', sans-serif";
             contexto.fillStyle = "#ffffff";
-            contexto.lineWidth = 3;
-            contexto.strokeStyle = "rgba(0, 0, 0, 0.35)";
-            contexto.strokeText(recortarTexto(opcao), raio * 0.6, 0);
-            contexto.fillText(recortarTexto(opcao), raio * 0.6, 0);
+            contexto.lineWidth = 4;
+            contexto.strokeStyle = "rgba(0, 0, 0, 0.45)";
+            contexto.strokeText(recortarTexto(opcao), raio * 0.62, 0);
+            contexto.fillText(recortarTexto(opcao), raio * 0.62, 0);
             contexto.restore();
         });
+
+        // Anel branco decorativo entre as fatias e a borda externa do canvas
+        contexto.beginPath();
+        contexto.arc(raio, raio, raio - 4, 0, Math.PI * 2);
+        contexto.lineWidth = 4;
+        contexto.strokeStyle = "#ffffff";
+        contexto.stroke();
     }
 
     // Evita que textos muito longos "vazem" para fora da fatia
     function recortarTexto(texto) {
-        return texto.length > 16 ? texto.slice(0, 15) + "…" : texto;
+        return texto.length > 12 ? texto.slice(0, 11) + "…" : texto;
     }
 
 
@@ -204,6 +241,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ===================== ESTADO INICIAL =====================
 
+    ajustarResolucaoCanvas();
     atualizarInterface();
+
+    // Reajusta a resolução se o tamanho exibido do canvas mudar
+    // (por exemplo, ao redimensionar a janela ou girar o celular)
+    window.addEventListener("resize", function () {
+        ajustarResolucaoCanvas();
+        desenharRoleta();
+    });
 
 });

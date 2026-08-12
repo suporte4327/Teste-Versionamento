@@ -58,6 +58,10 @@ document.addEventListener("DOMContentLoaded", function () {
             // Lê o valor guardado no atributo "data-cor" do botão que foi clicado
             const corEscolhida = botao.getAttribute("data-cor");
 
+            // Remove o degradê de fundo definido no CSS, para que a cor escolhida
+            // fique visível (senão o degradê ficaria sobreposto à cor sólida)
+            document.body.style.backgroundImage = "none";
+
             // Aplica a cor escolhida como cor de fundo do <body> da página
             document.body.style.backgroundColor = corEscolhida;
         });
